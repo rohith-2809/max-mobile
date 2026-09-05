@@ -1,0 +1,31 @@
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
+import { ClipboardText, DeviceMobile, MagnifyingGlass, Package, ShieldCheck } from '@phosphor-icons/react'
+import { useOutletContext } from 'react-router-dom'
+import PageHero from '../components/PageHero.jsx'
+import Reveal from '../components/Reveal.jsx'
+import ClosingCTA from '../components/ClosingCTA.jsx'
+import ReadinessCheck from '../components/ReadinessCheck.jsx'
+
+const stages = [
+  { id: 'describe', title: 'Describe', icon: DeviceMobile, heading: 'Begin with what changed.', copy: 'Select the closest symptom, identify the phone, and write down anything unusual that happened before the problem appeared.', details: ['Use everyday language', 'Include visible or audible symptoms', 'Mention drops, water, heat, or updates'] },
+  { id: 'assess', title: 'Assess', icon: MagnifyingGlass, heading: 'Let the device reveal the fault.', copy: 'A physical assessment can distinguish the obvious symptom from the part or connection that is actually causing it.', details: ['Check the affected function', 'Inspect related components', 'Separate observation from diagnosis'] },
+  { id: 'confirm', title: 'Confirm', icon: ClipboardText, heading: 'Understand the proposed work.', copy: 'The repair choice, parts, quote, and timing should be confirmed after the condition of the phone is understood.', details: ['Review the repair scope', 'Ask about parts and timing', 'Choose whether to proceed'] },
+  { id: 'return', title: 'Return', icon: Package, heading: 'Check the phone before leaving.', copy: 'When collecting a device, test the repaired function and the everyday features you rely on while help is still nearby.', details: ['Test the repaired area', 'Check calls, charging, and cameras', 'Confirm your device and accessories'] },
+]
+
+export default function ProcessPage() {
+  const { openRequest } = useOutletContext()
+  const [activeId, setActiveId] = useState('describe')
+  const active = stages.find((item) => item.id === activeId)
+  const ActiveIcon = active.icon
+  return (
+    <>
+      <PageHero title="A clear process protects better decisions." copy="See what to prepare, what an assessment can reveal, and when each choice is made." action="Prepare my request" onAction={() => openRequest()} image="/assets/battery-repair-poster.png" imageAlt="Mobile battery service detail" />
+      <section className="py-24 sm:py-32"><div className="mx-auto max-w-[1240px] px-5 sm:px-8"><Reveal className="max-w-3xl"><h2 className="section-title">Follow the repair from first symptom to handoff.</h2><p className="section-copy">Choose any part of the process to see the questions and decisions that belong there.</p></Reveal><Reveal className="mt-12 grid overflow-hidden rounded-[16px] bg-white shadow-[0_24px_70px_rgba(52,78,114,0.11)] lg:grid-cols-[0.72fr_1.28fr]"><div className="border-b border-[#dce4ef] p-4 lg:border-b-0 lg:border-r lg:p-6">{stages.map((item) => { const Icon = item.icon; const selected = item.id === activeId; return <button key={item.id} onClick={() => setActiveId(item.id)} className={`flex w-full items-center gap-4 rounded-[12px] px-4 py-4 text-left font-bold transition-all ${selected ? 'bg-[#1857d8] text-white shadow-[0_12px_26px_rgba(24,87,216,0.18)]' : 'text-[#53627a] hover:bg-[#eef3fa] hover:text-[#1857d8]'}`}><Icon size={23} weight={selected ? 'fill' : 'duotone'} />{item.title}</button> })}</div><div className="relative min-h-[470px] overflow-hidden bg-[#edf3ff] p-7 sm:p-10 lg:p-14"><div className="calibration-lines" aria-hidden="true" /><AnimatePresence mode="wait"><motion.div key={active.id} className="relative" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -14 }}><div className="grid size-14 place-items-center rounded-[16px] bg-white text-[#1857d8] shadow-[0_12px_30px_rgba(52,78,114,0.09)]"><ActiveIcon size={28} weight="duotone" /></div><h3 className="mt-8 max-w-2xl text-4xl font-[770] leading-tight tracking-[-0.035em]">{active.heading}</h3><p className="mt-5 max-w-[62ch] leading-7 text-[#5b6980]">{active.copy}</p><div className="mt-8 grid gap-3 sm:grid-cols-3">{active.details.map((detail) => <div key={detail} className="rounded-[12px] bg-white p-4 text-sm font-bold leading-6 text-[#34455e] shadow-[0_10px_26px_rgba(52,78,114,0.07)]">{detail}</div>)}</div></motion.div></AnimatePresence></div></Reveal></div></section>
+      <section className="bg-white py-24 sm:py-32"><div className="mx-auto grid max-w-[1240px] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24"><Reveal><ShieldCheck size={44} className="text-[#1857d8]" weight="duotone" /><h2 className="section-title mt-10">Prepare your privacy before the visit.</h2><p className="section-copy">Back up important information when possible, know your device passcode, and remove payment or identity items from the case.</p></Reveal><Reveal className="grid gap-4"><div className="process-band"><strong>Back up what matters</strong><span>Photos, contacts, notes, and important app data deserve a current copy.</span></div><div className="process-band"><strong>Know what access is needed</strong><span>Ask which functions must be tested and when the phone needs to be unlocked.</span></div><div className="process-band"><strong>Bring only useful accessories</strong><span>A problem cable or charger can help when it is part of the symptom.</span></div></Reveal></div></section>
+      <ReadinessCheck />
+      <ClosingCTA title="Start the process with a useful request." copy="Describe the symptom now, then bring the device to Max Mobbiles for a real assessment." onAction={() => openRequest()} />
+    </>
+  )
+}
