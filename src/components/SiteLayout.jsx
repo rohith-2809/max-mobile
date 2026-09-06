@@ -4,6 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import SiteHeader from './SiteHeader.jsx'
 import SiteFooter from './SiteFooter.jsx'
 import RepairRequest from './RepairRequest.jsx'
+import MobileQuickActions from './MobileQuickActions.jsx'
 
 export default function SiteLayout() {
   const location = useLocation()
@@ -38,6 +39,7 @@ export default function SiteLayout() {
         </motion.main>
       </AnimatePresence>
       <SiteFooter />
+      <MobileQuickActions onRequest={openRequest} />
       <RepairRequest key={request.session} open={request.open} initialIssue={request.issue} onClose={() => setRequest((current) => ({ ...current, open: false }))} />
     </div>
   )

@@ -5,6 +5,8 @@ import RepairsPage from './pages/RepairsPage.jsx'
 import ProcessPage from './pages/ProcessPage.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
+import CertificateGeneratePage from './pages/CertificateGeneratePage.jsx'
+import CertificateVerifyPage from './pages/CertificateVerifyPage.jsx'
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
           <Route path="process" element={<ProcessPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="certificate/generate" element={<CertificateGeneratePage />} />
+          <Route path="certificate/verify/:id" element={<CertificateVerifyPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

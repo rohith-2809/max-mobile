@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <PageHero title="Phone repair, handled with precision." copy="Describe the issue, prepare your request, and know what happens before you visit." action="Start a repair request" onAction={() => openRequest()} />
-      <section className="border-b border-[#e0e7f0] bg-white"><div className="no-scrollbar mx-auto flex max-w-[1240px] gap-3 overflow-x-auto px-5 py-6 sm:px-8">{services.map((service) => { const Icon = service.icon; return <Link to="/repairs" key={service.id} className="flex shrink-0 items-center gap-2.5 rounded-full bg-[#f1f5fb] px-4 py-2.5 text-sm font-bold text-[#40516a] transition-colors hover:bg-[#eaf1ff] hover:text-[#1857d8]"><Icon size={18} weight="duotone" />{service.label}</Link> })}</div></section>
+      <section className="border-b border-[#e0e7f0] bg-white"><div className="no-scrollbar mx-auto flex max-w-[1240px] gap-3 overflow-x-auto px-5 py-6 sm:px-8">{services.map((service) => { const Icon = service.icon; return <Link to={`/repairs?issue=${service.id}`} key={service.id} className="flex shrink-0 items-center gap-2.5 rounded-full bg-[#f1f5fb] px-4 py-2.5 text-sm font-bold text-[#40516a] transition-colors hover:bg-[#eaf1ff] hover:text-[#1857d8]"><Icon size={18} weight="duotone" />{service.label}</Link> })}</div></section>
       <VideoStory />
       <VideoGrid />
       <section className="bg-white py-24 sm:py-32"><div className="mx-auto max-w-[1240px] px-5 sm:px-8"><Reveal className="max-w-3xl"><h2 className="section-title">Three ways to move forward.</h2><p className="section-copy">Start wherever you are: identify the closest symptom, understand the handoff, or plan the visit.</p></Reveal><div className="mt-14 border-y border-[#dce4ef]">{[

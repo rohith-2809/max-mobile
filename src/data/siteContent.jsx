@@ -19,4 +19,5 @@ export const navLinks = [
   { label: 'Process', to: '/process' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
+  { label: 'Certificates', to: '/certificate/generate' },
 ]

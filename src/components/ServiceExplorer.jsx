@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { ArrowRight, Check, Info } from '@phosphor-icons/react'
+import { useSearchParams } from 'react-router-dom'
 import { services } from '../data/siteContent.jsx'
 import Reveal from './Reveal.jsx'
 
 export default function ServiceExplorer({ onBook }) {
-  const [activeId, setActiveId] = useState('screen')
+  const [searchParams] = useSearchParams()
+  const requestedId = searchParams.get('issue')
+  const [activeId, setActiveId] = useState(() => services.some((service) => service.id === requestedId) ? requestedId : 'screen')
   const active = services.find((service) => service.id === activeId)
   const ActiveIcon = active.icon
 
@@ -27,7 +30,7 @@ export default function ServiceExplorer({ onBook }) {
                 <button className="primary-button mt-8" onClick={() => onBook(active.label)}>Choose {active.label.toLowerCase()}<ArrowRight weight="bold" /></button>
               </motion.div>
             </AnimatePresence>
-            <div className="relative flex min-h-[390px] flex-col justify-between overflow-hidden bg-[#edf3ff] p-7 sm:p-10 lg:p-14"><div className="calibration-lines" aria-hidden="true" /><div className="relative"><p className="text-sm font-bold text-[#1857d8]">A useful assessment can check</p><div className="mt-8 space-y-4">{active.checks.map((item, index) => <motion.div key={`${active.id}-${item}`} className="flex items-center gap-4 rounded-[12px] bg-white/85 p-4 text-[15px] font-bold text-[#263750] shadow-[0_10px_30px_rgba(73,101,145,0.08)]" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.06 }}><span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#1857d8] text-white"><Check size={16} weight="bold" /></span>{item}</motion.div>)}</div></div><p className="relative mt-10 max-w-sm text-sm leading-6 text-[#61708a]">The exact repair and quote depend on the device and its physical condition.</p></div>
+            <div className="relative flex min-h-[330px] flex-col justify-between overflow-hidden bg-[#edf3ff] p-7 sm:min-h-[390px] sm:p-10 lg:p-14"><div className="calibration-lines" aria-hidden="true" /><div className="relative"><p className="text-sm font-bold text-[#1857d8]">A useful assessment can check</p><div className="mt-8 space-y-4">{active.checks.map((item, index) => <motion.div key={`${active.id}-${item}`} className="flex items-center gap-4 rounded-[12px] bg-white/85 p-4 text-[15px] font-bold text-[#263750] shadow-[0_10px_30px_rgba(73,101,145,0.08)]" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.06 }}><span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#1857d8] text-white"><Check size={16} weight="bold" /></span>{item}</motion.div>)}</div></div><p className="relative mt-8 max-w-sm text-sm leading-6 text-[#61708a] sm:mt-10">The exact repair and quote depend on the device and its physical condition.</p></div>
           </div>
         </Reveal>
       </div>

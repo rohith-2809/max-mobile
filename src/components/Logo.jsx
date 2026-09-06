@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom'
 export default function Logo() {
   return (
     <Link to="/" className="group inline-flex items-center gap-3" aria-label="Max Mobbiles home">
-      <span className="grid size-9 place-items-center rounded-[12px] bg-[#1857d8] text-sm font-black tracking-[-0.04em] text-white shadow-[0_10px_30px_rgba(24,87,216,0.22)] transition-transform duration-300 group-hover:-rotate-3">MM</span>
-      <span className="text-[15px] font-extrabold tracking-[-0.025em] text-[#0d1b2e]">MAX MOBBILES</span>
+      <img
+        src="/Logo.png"
+        alt=""
+        width="1536"
+        height="1024"
+        className="h-12 w-[72px] rounded-[10px] object-cover shadow-[0_10px_26px_rgba(36,39,5,0.2)] transition-transform duration-300 group-hover:scale-[1.04]"
+      />
+      <span className="hidden text-[15px] font-extrabold tracking-[-0.025em] text-[#0d1b2e] sm:inline">MAX MOBBILES</span>
     </Link>
   )
 }

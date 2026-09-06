@@ -5,7 +5,7 @@ import { ADDRESS, MAP_EMBED, MAP_LINK, navLinks } from '../data/siteContent.jsx'
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-[#dce4ef] bg-[#f1f5fb] px-5 py-8 sm:px-8 sm:py-12">
+    <footer className="border-t border-[#dce4ef] bg-[#f1f5fb] px-5 pb-[calc(6.25rem+env(safe-area-inset-bottom))] pt-8 sm:px-8 sm:py-12 lg:py-12">
       <div className="mx-auto grid max-w-[1340px] overflow-hidden rounded-[16px] bg-white shadow-[0_22px_70px_rgba(52,78,114,0.1)] lg:grid-cols-[0.78fr_1.22fr]">
         <div className="flex flex-col justify-between p-7 sm:p-10 lg:p-12">
           <div>
@@ -21,7 +21,7 @@ export default function SiteFooter() {
             {navLinks.map((link) => <Link key={link.to} to={link.to} className="hover:text-[#1857d8]">{link.label}</Link>)}
           </nav>
         </div>
-        <div className="relative min-h-[370px] overflow-hidden bg-[#eaf1ff] lg:min-h-[520px]">
+        <div className="relative min-h-[300px] overflow-hidden bg-[#eaf1ff] sm:min-h-[370px] lg:min-h-[520px]">
           <iframe title="Map showing Max Mobbiles in Vanasthalipuram" src={MAP_EMBED} className="absolute inset-0 h-full w-full border-0 grayscale-[0.15]" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
         </div>
       </div>
