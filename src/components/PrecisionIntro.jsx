@@ -8,7 +8,7 @@ export default function PrecisionIntro({ onComplete }) {
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    const timer = window.setTimeout(onComplete, reduceMotion ? 650 : 3200)
+    const timer = window.setTimeout(onComplete, reduceMotion ? 500 : 2800)
 
     return () => {
       window.clearTimeout(timer)
@@ -21,7 +21,7 @@ export default function PrecisionIntro({ onComplete }) {
       className="precision-intro"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, filter: reduceMotion ? 'none' : 'blur(5px)' }}
-      transition={{ duration: reduceMotion ? 0.2 : 0.62, ease: [0.76, 0, 0.24, 1] }}
+      transition={{ duration: reduceMotion ? 0.18 : 0.48, ease: [0.16, 1, 0.3, 1] }}
       role="status"
       aria-live="polite"
       aria-label="Preparing Max Mobbiles"
@@ -29,9 +29,9 @@ export default function PrecisionIntro({ onComplete }) {
       <div className="precision-intro__light" aria-hidden="true" />
       <motion.div
         className="precision-intro__panel"
-        initial={reduceMotion ? false : { opacity: 0, scale: 0.975 }}
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.985, y: 10 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="precision-intro__brand">
           <img src="/Logo.png" alt="" width="1536" height="1024" />

@@ -8,7 +8,7 @@ export default function Logo() {
         alt=""
         width="1536"
         height="1024"
-        className="h-12 w-[72px] rounded-[10px] object-cover shadow-[0_10px_26px_rgba(36,39,5,0.2)] transition-transform duration-300 group-hover:scale-[1.04]"
+        className="h-12 w-[72px] object-contain transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.035]"
       />
       <span className="hidden text-[15px] font-extrabold tracking-[-0.025em] text-[#0d1b2e] sm:inline">MAX MOBBILES</span>
     </Link>
